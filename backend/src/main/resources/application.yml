@@ -1,0 +1,43 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: ai-project-architect-backend
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 150MB
+      max-request-size: 150MB
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+app:
+  storage:
+    base-path: d:/project/storage
+  ingestion:
+    max-file-size-bytes: 157286400 # 150MB
+    max-extracted-bytes: 524288000  # 500MB
+    max-file-count: 50000
+    max-compression-ratio: 100
+  security:
+    cors:
+      allowed-origins:
+        - "http://localhost:5173"
+        - "http://localhost:3000"
+        - "http://127.0.0.1:5173"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
