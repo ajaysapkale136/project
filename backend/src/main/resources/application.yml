@@ -1,3 +1,4 @@
+
 server:
   port: 8080
   servlet:
@@ -20,16 +21,16 @@ app:
   storage:
     base-path: d:/project/storage
   ingestion:
-    max-file-size-bytes: 157286400 # 150MB
-    max-extracted-bytes: 524288000  # 500MB
+    max-file-size-bytes: 157286400
+    max-extracted-bytes: 524288000
     max-file-count: 50000
     max-compression-ratio: 100
   security:
+    jwt:
+      secret: ${JWT_SECRET_BASE64:dGhpc0lzQVZlcnlTZWN1cmVKd3RTZWNyZXRLZXlXaXRoMzJCeXRlc01pbmltdW1MZW5ndGg=}
+      expiration: 3600000
     cors:
-      allowed-origins:
-        - "http://localhost:5173"
-        - "http://localhost:3000"
-        - "http://127.0.0.1:5173"
+      allowed-origins: "http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173"
 
 management:
   endpoints:
@@ -38,6 +39,6 @@ management:
         include: health,info,metrics
   endpoint:
     health:
-      show-details: always
+      show-details: never
       probes:
         enabled: true
